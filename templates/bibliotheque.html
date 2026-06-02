@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row mb-5">
+    <div class="col-md-7">
+        <h2 class="text-light fw-bold">📖 Bibliothèque & Normes PDF</h2>
+        <p class="text-muted">Téléchargez vos guides de cours et fiches techniques de référence.</p>
+        
+        <div class="row g-3 mt-4">
+            {% for doc in documents %}
+            <div class="col-md-12">
+                <div class="card card-premium p-3 d-flex flex-row justify-content-between align-items-center shadow-sm">
+                    <div>
+                        <h5 class="text-light mb-1">{{ doc.titre }}</h5>
+                        <p class="text-muted small mb-0">{{ doc.description }}</p>
+                    </div>
+                    <a href="/telecharger/{{ doc.fichier }}" class="btn btn-outline-info btn-sm px-3">Télécharger</a>
+                </div>
+            </div>
+            {% endfor %}
+            {% if not documents %}
+                <p class="text-muted">Aucun PDF disponible pour le moment.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="card card-premium p-4 border-secondary">
+            <h4 class="text-primary-glow mb-3">Publier un nouveau cours / guide</h4>
+            <form action="/ajouter-pdf" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label text-light">Titre du document</label>
+                    <input type="text" name="titre" class="form-control form-dark" placeholder="Ex: Schéma de câblage Tableau Schneider" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-light">Description courte</label>
+                    <textarea name="description" class="form-control form-dark" rows="2" placeholder="Décrivez brièvement le contenu..."></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-light">Fichier PDF</label>
+                    <input type="file" name="fichier" class="form-control form-dark" accept=".pdf" required>
+                </div>
+                <button type="submit" class="btn btn-success w-100 fw-bold">Mettre en ligne</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
