@@ -1,0 +1,62 @@
+body {
+    background-color: #0b0f19;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bg-dark-premium {
+    background-color: #111827 !important;
+}
+
+.border-primary-glow {
+    border-color: #0072ff !important;
+    box-shadow: 0 0 10px rgba(0, 114, 255, 0.2);
+}
+
+.text-gradient {
+    background: linear-gradient(45deg, #0072ff, #00c6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-primary-glow {
+    color: #00c6ff;
+}
+
+.card-premium {
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 12px;
+}
+
+.card-resultat {
+    background-color: #111827;
+    border: 2px solid #0072ff;
+    border-radius: 12px;
+}
+
+.form-dark {
+    background-color: #111827;
+    border: 1px solid #4b5563;
+    color: #ffffff;
+}
+
+.form-dark:focus {
+    background-color: #111827;
+    border-color: #00c6ff;
+    color: #ffffff;
+    box-shadow: 0 0 8px rgba(0, 198, 255, 0.3);
+}
+
+.btn-gradient {
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
+    color: white;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(135deg, #0056b3, #0099cc);
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 198, 255, 0.4);
+                             }
