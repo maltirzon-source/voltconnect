@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 text-center mb-5">
+        <h1 class="display-4 fw-bold text-light">Espace Atelier Technique</h1>
+        <p class="text-muted">Dimensionnez vos installations selon les normes en vigueur.</p>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card card-premium p-4 shadow">
+            <h3 class="text-primary-glow mb-4">Calcul de la Section de Câble</h3>
+            <form action="/calculateur" method="POST">
+                <div class="mb-3">
+                    <label class="form-label text-light">Tension (V)</label>
+                    <input type="number" name="tension" class="form-control form-dark" value="230" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-light">Intensité du disjoncteur (A)</label>
+                    <input type="number" name="courant" class="form-control form-dark" value="16" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-light">Longueur du câble (mètres)</label>
+                    <input type="number" name="longueur" class="form-control form-dark" value="25" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-light">Nature du conducteur</label>
+                    <select name="conducteur" class="form-select form-dark">
+                        <option value="cuivre">Cuivre (Standard)</option>
+                        <option value="aluminium">Aluminium</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-gradient w-100 fw-bold py-2">Calculer la section</button>
+            </form>
+        </div>
+    </div>
+
+    {% if resultat %}
+    <div class="col-md-5 mt-4 mt-md-0">
+        <div class="card card-resultat p-4 border-primary-glow text-center h-100 d-flex flex-column justify-content-center">
+            {% if resultat.erreur %}
+                <p class="text-danger">{{ resultat.erreur }}</p>
+            {% else %}
+                <h4 class="text-muted text-uppercase small">Section théorique requise</h4>
+                <p class="display-5 fw-bold text-light">{{ resultat.section_theorique }} mm²</p>
+                <hr class="border-secondary">
+                <h4 class="text-primary-glow text-uppercase small">Section standard recommandée</h4>
+                <p class="display-3 fw-bold text-warning">{{ resultat.section_recommandee }} mm²</p>
+                <p class="text-muted small mb-0">Basé sur une chute de tension maximale admissible de 3%.</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
